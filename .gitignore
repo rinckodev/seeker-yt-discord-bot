@@ -8,3 +8,5 @@ package-lock.json
 firebase.json
 
 *.development.json
+
+/.vscode/archive
