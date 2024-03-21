@@ -9,6 +9,7 @@ export const guildSchema = new Schema(
         channels: {
             logs: channelInfo,
             general: channelInfo,
+            forms: channelInfo,
         }
     },
     {
