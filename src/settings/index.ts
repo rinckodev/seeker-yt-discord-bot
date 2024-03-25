@@ -1,37 +1,23 @@
-import { brBuilder, createEmbed, createEmbedAuthor, limitText, replaceText } from "@magicyan/discord";
-import { consola } from "consola";
-import { Client, WebhookClient, codeBlock } from "discord.js";
-import "./global.js";
 import settingsJson from "./settings.json" with { type: "json" };
+import { envSchema, EnvSchema } from "./env.js";
+import { consola as log } from "consola";
+export { onError } from "./error.js";
 
-export const log = consola;
-export const settings = settingsJson;
+import "./global.js";
+import chalk from "chalk";
 
-export async function onError(error: Error | any, client: Client<true>){
-    log.error(error);
+export { log, settingsJson as settings };
 
-    const webhooksLogURL = process.env.WEBHOOK_LOGS_URL;
-    if (!webhooksLogURL) return;
-
-    const { user } = client;
-    const errorMessage: string[] = [];
-    
-    if ("message" in error) errorMessage.push(String(error.message)); 
-    if ("stack" in error) {
-        const formated = replaceText(String(error.stack), { [__rootname]: "" });
-        const limited = limitText(formated, 2800, "...");
-        errorMessage.push(limited);
-    }
-    
-    const embed = createEmbed({
-        color: settingsJson.colors.danger,
-        author: createEmbedAuthor({ user }),
-        description: codeBlock("ts", brBuilder(...errorMessage)),
-    });
-
-    const webhook = new WebhookClient({ url: webhooksLogURL });
-
-    webhook.send({ embeds: [embed] })
-    .catch(log.error);
+const parseResult = envSchema.safeParse(process.env);
+if (!parseResult.success){
+    throw parseResult.error;
 }
+log.success(chalk.hex("#8b51a3")("Env vars loaded successfully!"));
 
+type EnvVars = Readonly<EnvSchema>
+
+declare global {
+    namespace NodeJS {
+        interface ProcessEnv extends EnvVars {}
+    }
+}
