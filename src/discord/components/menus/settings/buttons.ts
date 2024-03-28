@@ -22,6 +22,10 @@ new Component({
                 interaction.editReply(menus.settings.channels.main(guildData));
                 return;
             }
+            case "roles":{
+                interaction.editReply(menus.settings.roles.main(guildData));
+                return;
+            }
         }
         
     },

@@ -11,7 +11,8 @@ export function settingsMainMenu(guild: Guild){
         description: brBuilder(
             `# ${icon("gear")} Painel de configurações`,
             "",
-            "- #️⃣ Configurar canais"
+            "- #️⃣ Configurar canais",
+            "- 📄 Configurar cargos",
         ),
         footer: {
             text: `Configurações de ${guild.name}`,
@@ -24,7 +25,12 @@ export function settingsMainMenu(guild: Guild){
             customId: "menu/settings/channels",
             label: "Canais", emoji: "#️⃣",
             style: ButtonStyle.Secondary
-        })
+        }),
+        new ButtonBuilder({
+            customId: "menu/settings/roles",
+            label: "Cargos", emoji: "📄",
+            style: ButtonStyle.Secondary
+        }),
     );
 
 

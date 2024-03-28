@@ -1,7 +1,7 @@
 import { Component } from "#base";
 import { db } from "#database";
 import { menus } from "#menus";
-import { findChannel } from "@magicyan/discord";
+import { findChannel, findRole } from "@magicyan/discord";
 import { ComponentType } from "discord.js";
 
 new Component({
@@ -31,6 +31,22 @@ new Component({
                 await guildData.$set(`channels.${channelName}`, { id, url }).save();
 
                 interaction.editReply(menus.settings.channels.main(guildData));
+                return;
+            }
+            case "roles":{
+                const [roleName] = values;
+                interaction.editReply(menus.settings.roles.submenu(guildData, roleName));
+                return;
+            }
+            case "role":{
+                const [roleName] = args;
+                const [roleId] = values;
+
+                const { id, name } = findRole(guild).byId(roleId)!;
+
+                await guildData.$set(`roles.${roleName}`, { id, name }).save();
+
+                interaction.editReply(menus.settings.roles.main(guildData));
                 return;
             }
         }
