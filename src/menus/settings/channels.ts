@@ -9,6 +9,7 @@ export const settingsChannelsOptions = [
     { emoji: "📄", label: "Logs", value: "logs", description: "Canal de logs" },
     { emoji: "💬", label: "Bate-papo", value: "general", description: "Bate papo geral" },
     { emoji: "💬", label: "Formulários", value: "forms", description: "Canal de formulários" },
+    { emoji: "🔗", label: "Divulgação", value: "promotion", description: "Canal de divulgação" },
 ] as const;
 
 export function settingsChannelsMenu(guildData: GuildSchema){

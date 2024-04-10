@@ -9,6 +9,7 @@ export const settingsRolesOptions = [
     { emoji: "🔴", label: "Admin", value: "admin", description: "Cargo de administradores" },
     { emoji: "🟢", label: "Mod", value: "mod", description: "Cargo de moderadores" },
     { emoji: "🔵", label: "Membro", value: "member", description: "Cargo de membro comum" },
+    { emoji: icon("s-youtube"), label: "Youtuber", value: "youtuber", description: "Cargo de youtuber" },
 ] as const;
 
 export function settingsRolesMenu(guildData: GuildSchema){

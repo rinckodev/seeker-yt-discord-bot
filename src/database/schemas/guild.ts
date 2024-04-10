@@ -11,11 +11,13 @@ export const guildSchema = new Schema(
             logs: channelInfo,
             general: channelInfo,
             forms: channelInfo,
+            promotion: channelInfo,
         },
         roles: {
             admin: roleInfo,
             mod: roleInfo,
-            member: roleInfo
+            member: roleInfo,
+            youtuber: roleInfo
         }
     },
     {
