@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "node-terminal",
+            "name": "Run dev",
+            "request": "launch",
+            "command": "npm run dev"
+        }
+    ]
+}

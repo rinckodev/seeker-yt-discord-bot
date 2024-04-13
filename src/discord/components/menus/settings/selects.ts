@@ -16,13 +16,13 @@ new Component({
 
         const guildData = await db.guilds.get(guild.id);
 
-        switch(menu){
-            case "channels":{
+        switch (menu) {
+            case "channels": {
                 const [channelName] = values;
                 interaction.editReply(menus.settings.channels.submenu(guildData, channelName));
                 return;
             }
-            case "channel":{
+            case "channel": {
                 const [channelName] = args;
                 const [channelId] = values;
 
@@ -33,12 +33,12 @@ new Component({
                 interaction.editReply(menus.settings.channels.main(guildData));
                 return;
             }
-            case "roles":{
+            case "roles": {
                 const [roleName] = values;
                 interaction.editReply(menus.settings.roles.submenu(guildData, roleName));
                 return;
             }
-            case "role":{
+            case "role": {
                 const [roleName] = args;
                 const [roleId] = values;
 

@@ -42,7 +42,7 @@ new Command({
                 }
 
                 const buffer = Buffer.from(JSON.stringify(emojis, null, 2), "utf-8");
-                const attachment = new AttachmentBuilder(buffer, { name: "emojis.json" });
+                const attachment = new AttachmentBuilder(buffer, { description: "test", name: "emojis.json" });
 
                 interaction.reply({
                     ephemeral, files: [attachment],
