@@ -1,5 +1,6 @@
 import { Command } from "#base";
 import { db } from "#database";
+import { icon, res } from "#functions";
 import { menus } from "#menus";
 import { ApplicationCommandOptionType, ApplicationCommandType, ChannelType, codeBlock } from "discord.js";
 
@@ -37,10 +38,10 @@ new Command({
 
                 channel.send(menus.youtubers.main(guildData))
                 .then(message => {
-                    interaction.editReply({ content: `Mensagem enviada com sucesso! ${message.url}` });
+                    interaction.editReply(res.success(`${icon("success")} Mensagem enviada com sucesso! ${message.url}`));
                 })
                 .catch(err => {
-                    interaction.editReply({ content: `Ocorreu um erro ao enviar a mensagem! ${codeBlock(err)}` });
+                    interaction.editReply(res.danger(`${icon("danger")} Ocorreu um erro ao enviar a mensagem! ${codeBlock(err)}`));
                 });
                 return;
             }
